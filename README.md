@@ -10,3 +10,11 @@ Here are the 4 steps for this project :
 3. Call the train method of the YOLO model instance. This initiates the training process using a custom dataset defined in the provided YAML file.
 4. After training call the validate method of the model.
 5. When the model is trained, run te test.py to test the model on test data.
+
+Installation
+
+1. Install python version 3.11.3.
+2. Install ultralytics
+3. Setup the virtual environment
+4. Clone this repository.
+5. Install the requirements mentioned in teh requirements.txt.  
