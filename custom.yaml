@@ -1,0 +1,13 @@
+train: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_train/images
+val: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_val/images
+test: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_test/images
+
+nc: 1
+names: ['barcode']
+
+# roboflow:
+#   workspace: yolov8-wub6d
+#   project: barcode-k9xyu
+#   version: 1
+#   license: CC BY 4.0
+#   url: https://universe.roboflow.com/yolov8-wub6d/barcode-k9xyu/dataset/1
