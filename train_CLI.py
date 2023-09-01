@@ -9,9 +9,9 @@ def train_yolo(weights_path, data_config, epochs):
 
 def main():
     parser = argparse.ArgumentParser(description='Train YOLOv8 on custom data')
-    parser.add_argument('--weights', required=True)
-    parser.add_argument('--data-config', required=True)
-    parser.add_argument('--epochs', type=int, default=2)
+    parser.add_argument('weights', required=True)
+    parser.add_argument('data-config', required=True)
+    parser.add_argument('epochs', type=int, default=2)
     
     args = parser.parse_args()
     
