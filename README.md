@@ -3,7 +3,7 @@ Barcode-detection
 This project aims to develop a deep learning model able to detect a barcode in a given image. The model behind it is new version of yolo that is YOLOv8 introduced by ultralytics.
 
 Description
-Here are the 4 steps for this project :
+Here are the 5 steps for this project :
 
 1. Implement YOLO version 8 from ultralystics, that is used for object detection.
 2. Next create an instance of yolo and load pre-trained model of yolov8.
@@ -14,7 +14,6 @@ Here are the 4 steps for this project :
 Installation
 
 1. Install python version 3.11.3.
-2. Install ultralytics
-3. Setup the virtual environment
+2. Setup the virtual environment
+3.  Install the requirements mentioned in the requirements.txt.
 4. Clone this repository.
-5. Install the requirements mentioned in teh requirements.txt.  
