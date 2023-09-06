@@ -1,5 +1,17 @@
 from ultralytics import YOLO
+import typer
 
-# /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_test/images
-model = YOLO("/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train5/weights/best.pt")
-model.predict(source="test4.png", save=True)
+app = typer.Typer()
+
+@app.command()
+def test_yolo(
+    weights_path: str = typer.Argument(),
+    test_path: str = typer.Argument(),
+):
+    print("Testing started")
+    model = YOLO(weights_path)
+    model.predict(test_path, save=True)
+    print("Testing done successfully")
+
+if __name__ == "__main__":
+    app()
