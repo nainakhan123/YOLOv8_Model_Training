@@ -6,7 +6,7 @@ def train_yolo(weights_path, data_config, epochs):
     model = YOLO(weights_path)
     model.train(data=data_config, epochs=epochs)
     print('Training completed.')
-
+    
 def main():
     parser = argparse.ArgumentParser(description='Train YOLOv8 on custom data')
     parser.add_argument('weights', required=True)

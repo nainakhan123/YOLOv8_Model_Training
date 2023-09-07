@@ -4,13 +4,12 @@ import argparse
 def predict_yolo(path_to_weights, path_to_test):
     model = YOLO(path_to_weights)
     model.predict(source=path_to_test)
-    
+
 def main():
     parser = argparse.ArgumentParser()  
     parser.add_argument('path_to_weights')
     parser.add_argument('path_to_test')
-    # parser.add_argument('saved_images', type=bool, default=True)
-
+    
     args = parser.parse_args()
 
     predict_yolo(args.path_to_weights, args.path_to_test)
