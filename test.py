@@ -2,7 +2,6 @@ import typer
 from ultralytics import YOLO
 
 
-app = typer.Typer()
 
 
 @app.command()
@@ -17,4 +16,4 @@ def test_yolo(
 
 
 if __name__ == "__main__":
-    app()
+    main()
