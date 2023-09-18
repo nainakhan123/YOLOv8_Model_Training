@@ -1,4 +1,4 @@
-import argparse
+import typer
 from ultralytics import YOLO
 
 
