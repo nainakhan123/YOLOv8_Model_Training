@@ -1,5 +1,22 @@
+import argparse
+
 from ultralytics import YOLO
 
-# /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_test/images
-model = YOLO("/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train5/weights/best.pt")
-model.predict(source="test4.png", save=True)
+
+def predict_yolo(path_to_weights, path_to_test):
+    model = YOLO(path_to_weights)
+    model.predict(source=path_to_test)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path_to_weights")
+    parser.add_argument("path_to_test")
+
+    args = parser.parse_args()
+
+    predict_yolo(args.path_to_weights, args.path_to_test)
+
+
+if __name__ == "__main__":
+    main()
