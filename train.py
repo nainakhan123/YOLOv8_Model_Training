@@ -1,6 +1,6 @@
 import typer
-
 from ultralytics import YOLO
+
 
 app = typer.Typer()
 
