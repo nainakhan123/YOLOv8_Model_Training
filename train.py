@@ -1,4 +1,5 @@
 import typer
+
 from ultralytics import YOLO
 
 app = typer.Typer()
@@ -18,5 +19,5 @@ def train_yolo(
     model.val()
 
 
-# if __name__ == "__main__":
-#     app()
+if __name__ == "__main__":
+    app()
