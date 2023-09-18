@@ -3,6 +3,7 @@ import typer
 
 app = typer.Typer()
 
+
 @app.command()
 def test_yolo(
     weights_path: str = typer.Argument(),
@@ -12,6 +13,7 @@ def test_yolo(
     model = YOLO(weights_path)
     model.predict(test_path, save=True)
     print("Testing done successfully")
+
 
 if __name__ == "__main__":
     app()
