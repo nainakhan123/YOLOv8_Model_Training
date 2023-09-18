@@ -1,4 +1,5 @@
 from ultralytics import YOLO
+
 import typer
 
 app = typer.Typer()
