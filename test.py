@@ -1,5 +1,6 @@
-from ultralytics import YOLO
 import argparse
+
+from ultralytics import YOLO
 
 
 def predict_yolo(path_to_weights, path_to_test):
