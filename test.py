@@ -7,12 +7,12 @@ app = typer.Typer()
 
 @app.command()
 def test_yolo(
-    weights_path: str = typer.Argument(),
-    test_path: str = typer.Argument(),
+    path_to_best_weights: str = typer.Argument(),
+    path_to_test_file: str = typer.Argument(),
 ):
     print("Testing started")
-    model = YOLO(weights_path)
-    model.predict(test_path, save=True)
+    model: YOLO = YOLO(path_to_best_weights)
+    model.predict(path_to_test_file, save=True)
     print("Testing done successfully")
 
 
