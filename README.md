@@ -7,9 +7,8 @@ Here are the 4 steps for this project :
 
 1. Implement YOLO version 8 from ultralystics, that is used for object detection.
 2. Next create an instance of yolo and load pre-trained model of yolov8.
-3. Now through CLI run the command "python train.py path_to_trained_model path_to_data_to_train --epochs 2", replace the placeholders path_to_trained_model and path_to_data_to_train with your actual paths and train the model. 
-
-4. After training the model, test the performance on test dataset running the the command through CLI "python test.py path_to_test_data". Replace the placeholder with your dataset path.
+3. Now through CLI run the command `python train.py path_to_trained_model path_to_data_to_train --epochs 2`, replace the placeholders path_to_trained_model and path_to_data_to_train with your actual paths and train the model. 
+4. After training the model, test the performance on test dataset running the the command through CLI `python test.py path_to_test_data`. Replace the placeholder with your dataset path.
 
 Installation
 
