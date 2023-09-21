@@ -18,5 +18,6 @@ Installation
 
 1. Install python version 3.11.3.
 2. Setup the virtual environment
-3. Install the requirements mentioned in the requirements.txt by the running the command "pip install -r requirements.txt".
+3. Install the requirements mentioned in the requirements.txt by the running the command 
+```pip install -r requirements.txt```.
 4. Clone this repository.
