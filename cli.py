@@ -12,12 +12,12 @@ def train(
     pre_trained_model_path: str = typer.Option(
         "--path_to_pretrained_model", help="Path to pre-trained model"
     ),
-    data_to_be_trained_config_path: str = typer.Option(
-        "--data_to_be_trained_config_path", help="Path to dataset to be train"
+    dataset_config_path: str = typer.Option(
+        "--data_to_be_trained_config_path", help="Path to dataset yaml file for training"
     ),
     epochs: int = typer.Option("--epochs", help="Number of epochs"),
 ):
-    train_yolo(pre_trained_model_path, data_to_be_trained_config_path, epochs)
+    train_yolo(pre_trained_model_path, dataset_config_path, epochs)
 
 
 @app.command()
