@@ -1,22 +1,8 @@
-import argparse
-
 from ultralytics import YOLO
 
 
-def predict_yolo(path_to_weights, path_to_test):
-    model = YOLO(path_to_weights)
-    model.predict(source=path_to_test)
-
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path_to_weights")
-    parser.add_argument("path_to_test")
-
-    args = parser.parse_args()
-
-    predict_yolo(args.path_to_weights, args.path_to_test)
-
-
-if __name__ == "__main__":
-    main()
+def test_yolo(path_to_best_weights: str, path_to_test_data: str):
+    print("Testing started")
+    model: YOLO = YOLO(path_to_best_weights)
+    model.predict(path_to_test_data, save=True)
+    print("Testing done successfully")
