@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import uvicorn
 
-from test import test_yolo
-from train import train_yolo
+from test_model import test_yolo
+from train_model import train_yolo
 
 
 app = FastAPI()
@@ -46,6 +47,6 @@ def test_model(test_data: TestRequest):
 
 
 if __name__ == "__main__":
-    import uvicorn
+
 
     uvicorn.run(app, host="0.0.0.0", port=9000)
