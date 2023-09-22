@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from ultralytics import YOLO
 import uvicorn
 
+from models import TrainRequest
+from models import TestRequest
 from test_model import test_yolo
 from train_model import train_yolo
 
@@ -9,18 +11,7 @@ from train_model import train_yolo
 app = FastAPI()
 
 
-class TrainRequest(BaseModel):
-    pre_trained_model_path: str
-    dataset_config_path: str
-    epochs: int
-
-
-class TestRequest(BaseModel):
-    path_to_best_weights: str
-    path_to_test_data: str
-
-
-@app.post("/train/")
+@app.post("/train_model/")
 def train_model(train_data: TrainRequest):
     try:
         train_yolo(
@@ -35,11 +26,17 @@ def train_model(train_data: TrainRequest):
         ) from exp
 
 
-@app.post("/test/")
+@app.post("/test_model/")
 def test_model(test_data: TestRequest):
     try:
-        test_yolo(test_data.path_to_best_weights, test_data.path_to_test_data)
-        return {"message": "Testing completed successfully"}
+        model = YOLO(test_data.path_to_best_weights)
+        results = model(test_data.path_to_test_data)
+
+        bounding_boxes = []
+        for result in results:
+            bounding_boxes.extend(result.boxes.xyxy.tolist())
+
+        return {"bounding_boxes": bounding_boxes,"message": "Testing done successfully" }
     except Exception as exp:
         raise HTTPException(
             status_code=500, detail=f"Error during testing: {str(exp)}"
@@ -47,6 +44,4 @@ def test_model(test_data: TestRequest):
 
 
 if __name__ == "__main__":
-
-
     uvicorn.run(app, host="0.0.0.0", port=9000)
