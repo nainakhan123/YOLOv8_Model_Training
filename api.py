@@ -33,18 +33,18 @@ async def test_model(
     path_to_test_data: UploadFile = File(...),
 ):
     try:
-        best_weights_path = os.path.join("/tmp", path_to_best_weights.filename)
-        test_data_path = os.path.join("/tmp", path_to_test_data.filename)
+        best_weights_path:str = os.path.join("/tmp", path_to_best_weights.filename)
+        test_data_path:str = os.path.join("/tmp", path_to_test_data.filename)
 
         with open(best_weights_path, "wb") as best_weights_file:
             best_weights_file.write(path_to_best_weights.file.read())
         with open(test_data_path, "wb") as test_data_file:
             test_data_file.write(path_to_test_data.file.read())
 
-        model = YOLO(best_weights_path)
-        results = model(test_data_path)
+        model:YOLO = YOLO(best_weights_path)
+        results:str = model(test_data_path)
 
-        bounding_boxes = []
+        bounding_boxes:int = []
         for result in results:
             bounding_boxes.extend(result.boxes.xyxy.tolist())
 
