@@ -28,12 +28,12 @@ async def train_model(train_data: TrainRequest):
 
 
 # best_weights_path = "/home/sumbalkhan12/YOLOv8_Model_Training/runs/detect/train2/weights/best.pt"
+best_weights_path = "/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt"
 
 
 @app.post("/test_model/")
 async def test_model(
     path_to_test_image: UploadFile = File(...),
-    best_weights_path = "/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt"
 ):
     try:
         test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
