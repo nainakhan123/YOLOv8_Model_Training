@@ -32,18 +32,18 @@ async def train_model(train_data: TrainRequest):
 
 @app.post("/test_model/")
 async def test_model(
-    path_to_test_data: UploadFile = File(...),
-    best_weights_path="/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt",
+    path_to_test_image: UploadFile = File(...),
+    best_weights_path = "/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt"
 ):
     try:
-        test_data_path: str = os.path.join("/tmp", path_to_test_data.filename)
+        test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
 
-        with open(test_data_path, "wb") as test_data_file:
-            test_data_file.write(path_to_test_data.file.read())
+        with open(test_image_path, "wb") as test_image_file:
+            test_image_file.write(path_to_test_image.file.read())
             print("picture uploaded")
 
         model = YOLO(best_weights_path)
-        results = model(test_data_path)
+        results = model(test_image_path)
         print("Results")
         bounding_boxes = []
         for result in results:
@@ -57,7 +57,7 @@ async def test_model(
         raise HTTPException(
             status_code=500, detail=f"Error during testing: {str(exp)}"
         ) from exp
-
+    
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9000)
