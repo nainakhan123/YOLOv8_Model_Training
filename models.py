@@ -7,5 +7,5 @@ class TrainRequest(BaseModel):
 
 
 class TestRequest(BaseModel):
-    path_to_best_weights: str
-    path_to_test_data: str
+    path_to_test_image: str
+    # best_weights_path: str
