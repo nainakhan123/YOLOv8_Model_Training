@@ -22,6 +22,11 @@ python cli.py --pre_trained_model_path model.pt --dataset_to_be_trained_config_p
   uvicorn api:app --reload
  ```
 6. After opening the application in browser in the url go to api docs and from their you can train and test the dataset using YOLOv8.
+7. For testing the performance of model we have use PYTEST framework. 
+8. For tesing run the following command on the command prompt
+```bash
+pytest or pytest filename
+```
 
 Installation
 
