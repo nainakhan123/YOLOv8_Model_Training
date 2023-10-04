@@ -1,7 +1,7 @@
 import typer
 
-from test import test_yolo
-from train import train_yolo
+from validation import validation_yolo
+from train_model import train_yolo
 
 
 app = typer.Typer()
@@ -29,7 +29,7 @@ def test(
         "--test_data_path", help="Path to test dataset it could be a directory or a single picture"
     ),
 ):
-    test_yolo(path_to_best_weights, path_to_test_data)
+    validation_yolo(path_to_best_weights, path_to_test_data)
 
 
 if __name__ == "__main__":

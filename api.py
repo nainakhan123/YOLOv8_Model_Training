@@ -31,8 +31,8 @@ async def train_model(train_data: TrainRequest):
 best_weights_path = "/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt"
 
 
-@app.post("/test_model/")
-async def test_model(
+@app.post("/validation/")
+async def validation(
     path_to_test_image: UploadFile = File(...),
 ):
     try:
