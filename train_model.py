@@ -12,3 +12,4 @@ def train_yolo(
     model.train(data=dataset_config_path, epochs=epochs)
     print("Successfully trained YOLO model")
     model.val()
+    return "Successfully trained YOLO model"
