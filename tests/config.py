@@ -1,8 +1,9 @@
 import pytest
 
+
 @pytest.fixture
 def pre_trained_model_path():
-    return "/home/sumbalkhan12/Test/barcode-detecion/"
+    return "/home/sumbalkhan12/Test/barcode-detecion/yolov8n.pt"
 
 
 @pytest.fixture
