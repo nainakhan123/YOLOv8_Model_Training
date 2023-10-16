@@ -1,0 +1,6 @@
+train: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_train/images
+val: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_val/images
+test: /home/sumbalkhan12/Test/barcode-detecion/large_dataset/yolo_test/images
+
+nc: 1
+names: ['barcode']

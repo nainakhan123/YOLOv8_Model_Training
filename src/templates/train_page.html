@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train YOLO Model</title>
+    <style>
+     *{
+      background-color:black;
+      margin:0px;
+      padding:0px;
+      font-family: Arial, Helvetica, sans-serif;
+      }
+      .div1{
+      color:white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      }
+      .content{
+      text-align:center;
+      padding:10px;
+      }
+
+      .content h1{
+      margin: 20px;
+      }
+      label{
+        margin: 40px;
+        padding: 10px;
+        font-size: 17px;
+      }
+      input{
+        margin: 40px;
+        padding: 10px;
+        border: 2px solid white;
+      }
+      .epochs{
+      color: white;
+      }
+      .btn{
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor:pointer;
+      border: 2px solid white;
+      padding: 13px 20px;
+      }
+    </style>
+</head>
+<body>
+<div class="div1">
+ <div class="content">
+    <h1>Train YOLO Model</h1>
+    <form method="post" action="/train_model/" enctype="multipart/form-data">
+        <label for="pretrained_model">Pretrained Model Path:</label>
+        <input type="file" id="pretrained_model" name="pretrained_model"><br>
+
+        <label for="dataset_config">Dataset Config Path:</label>
+        <input type="file" id="dataset_config" name="dataset_config"><br>  <!-- Updated to file input -->
+
+        <label for="epochs">Epochs:</label>
+        <input class="epochs" type="number" id="epochs" name="epochs"><br>
+
+        <button type="submit" class="btn">Start Training</button>
+    </form>
+    </div>
+    </div>
+</body>
+</html>
