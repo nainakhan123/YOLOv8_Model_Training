@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
-from src.api import app  # Make sure to import your FastAPI app
+from src.api import app
 
 client = TestClient(app)
 
