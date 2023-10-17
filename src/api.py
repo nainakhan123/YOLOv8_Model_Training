@@ -11,10 +11,10 @@ from fastapi.templating import Jinja2Templates
 from PIL import Image, ImageDraw
 
 
-from src.domain.train_model import train_yolo
+from domain.train_model import train_yolo
 
 
-app = FastAPI(templates_directory=os.path.join(os.path.dirname(__file__), "templates"))
+app = FastAPI(templates_directory=os.path.join(os.path.dirname(__file__), "src/templates"))
 
 
 templates = Jinja2Templates(directory="templates")
