@@ -13,11 +13,10 @@ from PIL import Image, ImageDraw
 
 from src.domain.train_model import train_yolo
 
+app=FastAPI()
 
-app = FastAPI(templates_directory=os.path.join(os.path.dirname(__file__), "src/templates"))
 
-
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -77,8 +76,8 @@ async def validation(
 ):
     try:
         test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
-        best_weights_path = "/home/sumbalkhan12/Test/barcode-detecion/runs/detect/train2/weights/best.pt"
-
+        best_weights_path ="src/best.pt"
+#  "/home/sumbalkhan12/Test/barcode-detection/runs/detect/train2/weights/best.pt"
         with open(test_image_path, "wb") as test_image_file:
             test_image_file.write(path_to_test_image.file.read())
             print("picture uploaded")
