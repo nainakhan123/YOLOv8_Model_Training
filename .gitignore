@@ -5,3 +5,6 @@ runs
 .mypy_cache
 .pytest_cache
 __init__.py
+test_dataset
+yolov8n.pt
+.ruff_cache
