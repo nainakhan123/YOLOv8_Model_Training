@@ -2,3 +2,5 @@ ultralytics>=8.0.162
 typer>=0.9.0
 uvicorn>=0.23.2
 fastapi>=0.103.2
+Docker>=24.0.7
+docker-compose>=1.29.2
