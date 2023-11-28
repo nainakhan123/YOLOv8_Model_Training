@@ -25,7 +25,7 @@ async def get_form(request: Request):
 
 
 @app.get("/train_model/", response_class=HTMLResponse)
-async def read_train(request: Request):
+async def read_train(request: Request): 
     return templates.TemplateResponse("train_page.html", {"request": request})
 
 
