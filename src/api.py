@@ -143,7 +143,7 @@ async def validation(
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
 
-    file_name = f"uploads/{file.filename}"
+    file_name = file.filename
 
     s3.upload_fileobj(file.file, bucket_name, file_name)
 
