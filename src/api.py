@@ -2,6 +2,7 @@ import os
 import io
 import traceback
 import base64
+import boto3
 
 import uvicorn
 from ultralytics import YOLO
@@ -16,6 +17,13 @@ from src.aws_s3_upload import create_upload_file
 
 app=FastAPI()
 
+s3=boto3.client('s3')
+
+bucket_name = 'barcodemlmodels'
+best_weights_key = 'best.pt'
+local_best_weights_path = '/tmp/best.pt'
+
+s3.download_file(bucket_name, best_weights_key, local_best_weights_path)
 
 templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
 
@@ -77,13 +85,13 @@ async def validation(
 ):
     try:
         test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
-        best_weights_path ="src/best.pt"
+        # best_weights_path ="src/best.pt"
     #  "/home/sumbalkhan12/Test/barcode-detection/runs/detect/train2/weights/best.pt"
         with open(test_image_path, "wb") as test_image_file:
             test_image_file.write(path_to_test_image.file.read())
             print("picture uploaded")
 
-        model = YOLO(best_weights_path)
+        model = YOLO(local_best_weights_path)
         results = model(test_image_path)
         print("Results")
         bounding_boxes = []
