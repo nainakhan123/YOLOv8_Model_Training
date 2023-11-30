@@ -1,11 +1,8 @@
 import boto3
-
 from starlette.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile
 
-
-app=FastAPI()
-
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,13 +12,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-s3=boto3.client('s3')
-
-bucket_name='fastapiimages'
+s3 = boto3.client('s3')
+bucket_name = 'fastapiimages'
 
 def create_upload_file(file: UploadFile = File(...)):
-
-    file_name = file.file
-    s3.upload_file(file.file, bucket_name, file_name)
+    file_name = file.filename  # Use file.filename to get the name of the file
+    s3.upload_fileobj(file.file, bucket_name, file_name)
     print("File uploaded")
     return {"filename": file_name}
