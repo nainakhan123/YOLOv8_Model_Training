@@ -78,7 +78,6 @@ async def validation(
     try:
         test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
         best_weights_path ="src/best.pt"
-        create_upload_file()
     #  "/home/sumbalkhan12/Test/barcode-detection/runs/detect/train2/weights/best.pt"
         with open(test_image_path, "wb") as test_image_file:
             test_image_file.write(path_to_test_image.file.read())
@@ -109,6 +108,8 @@ async def validation(
         output_image_buffer.seek(0)
 
         output_image = base64.b64encode(output_image_buffer.read()).decode()
+
+        create_upload_file(path_to_test_image)
 
         return templates.TemplateResponse(
             "results.html",
