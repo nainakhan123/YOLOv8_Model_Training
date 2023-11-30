@@ -21,7 +21,7 @@ bucket_name='fastapiimages'
 
 def create_upload_file(file: UploadFile = File(...)):
 
-    file_name = file.filename
-    s3.upload_fileobj(file.filename, bucket_name, file_name)
+    file_name = file.file
+    s3.upload_fileobj(file.file, bucket_name, file_name)
     print("File uploaded")
     return {"filename": file_name}
