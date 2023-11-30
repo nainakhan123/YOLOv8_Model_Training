@@ -2,7 +2,6 @@ import os
 import io
 import traceback
 import base64
-import boto3
 
 import uvicorn
 from ultralytics import YOLO
@@ -10,25 +9,12 @@ from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from PIL import Image, ImageDraw
-from botocore.exceptions import NoCredentialsError
-from starlette.middleware.cors import CORSMiddleware
 
 
 from src.domain.train_model import train_yolo
+from src.aws_s3_upload import create_upload_file
 
 app=FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-s3=boto3.client('s3')
-
-bucket_name='fastapiimages'
 
 
 templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
@@ -92,7 +78,8 @@ async def validation(
     try:
         test_image_path: str = os.path.join("/tmp", path_to_test_image.filename)
         best_weights_path ="src/best.pt"
-#  "/home/sumbalkhan12/Test/barcode-detection/runs/detect/train2/weights/best.pt"
+        create_upload_file()
+    #  "/home/sumbalkhan12/Test/barcode-detection/runs/detect/train2/weights/best.pt"
         with open(test_image_path, "wb") as test_image_file:
             test_image_file.write(path_to_test_image.file.read())
             print("picture uploaded")
@@ -132,7 +119,6 @@ async def validation(
                 "bounding_boxes": boxes,
             },
         )
-
     except Exception as exp:
         traceback.print_exc()
         print(f"Error during validation: {str(exp)}")
@@ -140,16 +126,6 @@ async def validation(
             status_code=500, detail=f"Error during testing: {str(exp)}"
         ) from exp
 
-@app.post("/uploadfile/")
-async def create_upload_file(file: UploadFile = File(...)):
-
-    file_name = file.filename
-
-    s3.upload_fileobj(file.file, bucket_name, file_name)
-
-    print("File uploaded")
-
-    return {"filename": file_name}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0")
