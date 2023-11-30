@@ -2,6 +2,7 @@ import os
 import io
 import traceback
 import base64
+import boto3
 
 import uvicorn
 from ultralytics import YOLO
@@ -9,11 +10,25 @@ from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from PIL import Image, ImageDraw
+from botocore.exceptions import NoCredentialsError
+from starlette.middleware.cors import CORSMiddleware
 
 
 from src.domain.train_model import train_yolo
 
 app=FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+s3=boto3.client('s3')
+
+bucket_name='fastapiimages'
 
 
 templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
@@ -125,6 +140,16 @@ async def validation(
             status_code=500, detail=f"Error during testing: {str(exp)}"
         ) from exp
 
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile = File(...)):
+
+    file_name = f"uploads/{file.filename}"
+
+    s3.upload_fileobj(file.file, bucket_name, file_name)
+
+    print("File uploaded")
+
+    return {"filename": file_name}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=9000)
+    uvicorn.run(app, host="0.0.0.0")
