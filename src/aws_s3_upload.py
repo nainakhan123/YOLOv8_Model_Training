@@ -16,7 +16,7 @@ s3 = boto3.client('s3')
 bucket_name = 'fastapiimages'
 
 def create_upload_file(file: UploadFile = File(...)):
-    file_name = file.filename  # Use file.filename to get the name of the file
+    file_name = file.filename 
     s3.upload_fileobj(file.file, bucket_name, file_name)
     print("File uploaded")
     return {"filename": file_name}
