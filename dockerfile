@@ -1,6 +1,6 @@
 FROM python:3.10.2
 
-RUN apt-get update && apt-get install -y libgl1-mesa-glx
+RUN apt-get update && apt-get install -y libgl1-mesa-glx awscli
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 
 COPY src/ /app/src
 
-CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.handler:app", "--host", "0.0.0.0", "--port", "8000"]
