@@ -20,7 +20,7 @@ app=FastAPI()
 s3=boto3.client('s3')
 
 bucket_name = 'barcodemlmodels'
-best_weights_key = 'best.pt'
+best_weights_key = 'model_new/best.pt'
 local_best_weights_path = '/tmp/best.pt'
 
 s3.download_file(bucket_name, best_weights_key, local_best_weights_path)
