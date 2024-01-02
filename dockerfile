@@ -13,5 +13,6 @@ COPY src/ /app/src
 # CMD ["uvicorn", "src.handler:app", "--host", "0.0.0.0", "--port", "9000"]
 CMD ["sh", "-c", "MPLCONFIGDIR=/tmp/matplotlib && uvicorn src.handler:app --host 0.0.0.0 --port 9000"]
 
-
 EXPOSE 9000
+
+# docker run -e AWS_ACCESS_KEY_ID=AKIA2EAH6IIVBFIDTA6Q -e AWS_SECRET_ACCESS_KEY=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 -e AWS_DEFAULT_REGION=us-east-1 -p 9000:9000 my-fastapi
