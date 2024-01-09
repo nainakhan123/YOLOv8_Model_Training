@@ -109,7 +109,7 @@ async def validation(
         if len(bounding_boxes) > 0:
             message = "Barcode Detected"
         else:
-            message = "Barcode Not Detected"
+            message = "No barcode and QR code detected"
 
         output_image_buffer = io.BytesIO()
         image.save(output_image_buffer, format="PNG")
