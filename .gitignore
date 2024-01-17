@@ -8,3 +8,6 @@ __init__.py
 test_dataset
 yolov8n.pt
 .ruff_cache
+best.onnx
+best.mlpackage
+best_saved_model
