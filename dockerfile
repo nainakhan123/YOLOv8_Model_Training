@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 COPY src/ /app/src
 
-# CMD ["uvicorn", "src.handler:app", "--host", "0.0.0.0", "--port", "9000"]
-CMD ["sh", "-c", "MPLCONFIGDIR=/tmp/matplotlib && uvicorn src.handler:app --host 0.0.0.0 --port 9000"]
-
 EXPOSE 9000
+
+CMD ["uvicorn", "src.handler:app", "--host", "0.0.0.0", "--port", "9000"]
+# CMD ["sh", "-c", "MPLCONFIGDIR=/tmp/matplotlib && uvicorn src.handler:app --host 0.0.0.0 --port 9000"]
