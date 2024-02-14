@@ -32,6 +32,15 @@ templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "t
 async def get_form(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/health", response_model=dict)
+def health_check():
+    return {"status": "ok"}
+
+@app.post("/setup")
+def setup():
+  
+    return {"status": "success"}
+
 
 @app.get("/train_model/", response_class=HTMLResponse)
 async def read_train(request: Request): 
